@@ -1,0 +1,12 @@
+.header a{
+  text-decoration: none;
+}
+.header{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo{
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+}

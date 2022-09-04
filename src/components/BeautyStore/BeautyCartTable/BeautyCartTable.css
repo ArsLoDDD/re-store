@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+}
+.total {
+  text-align: right;
+  margin-right: 2rem;
+  font-size: 1.3rem;
+}

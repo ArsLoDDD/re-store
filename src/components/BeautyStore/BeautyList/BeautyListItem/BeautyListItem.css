@@ -1,0 +1,26 @@
+.beauty-list-item {
+  display: flex;
+  margin: 2rem;
+}
+.beauty-details {
+  display: flex;
+  flex-direction: column;
+
+}
+.beauty-cover {
+  flex-shrink: 0;
+  width: 120px;
+  margin-right: 30px;
+}
+.beauty-cover img {
+  max-width: 100%;
+}
+.beauty-title {
+  text-decoration: none;
+  width: max-content;
+  color: blue;
+  font-size: 1.2rem;
+}
+.beauty-price {
+  font-size: 1.3rem;
+}
