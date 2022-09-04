@@ -16,23 +16,24 @@ class BeautyList extends Component {
 
   render() {
     const { beauty, isLoading } = this.props;
-    if (isLoading) {
-      return (
-        <div className="spinner">
-          <Spiner />
-        </div>
-      );
-    }
     return (
-      <ul className="beauty-list">
-        {beauty.map((beauty) => {
-          return (
-            <li key={beauty.id}>
-              <BeautyListItem beauty={beauty} />
-            </li>
-          );
-        })}
-      </ul>
+      <div>
+        {isLoading ? (
+          <div className="spinner">
+            <Spiner />
+          </div>
+        ) : (
+          <ul className="beauty-list">
+            {beauty.map((beauty) => {
+              return (
+                <li key={beauty.id}>
+                  <BeautyListItem beauty={beauty} />
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
     );
   }
 }
