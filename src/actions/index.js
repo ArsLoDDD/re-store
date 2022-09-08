@@ -4,7 +4,16 @@ const beautyLoaded = (newBeauty) => {
     payload: newBeauty,
   };
 };
+const beautyRequest = () => {
+  return {
+    type: "BEAUTY_REQUESTED",
+  };
+};
 
-export {
-  beautyLoaded
-}
+const beautyError = (error) => {
+  return {
+    type: "BEAUTY_ERROR",
+    payload: error,
+  };
+};
+export { beautyLoaded, beautyRequest, beautyError };

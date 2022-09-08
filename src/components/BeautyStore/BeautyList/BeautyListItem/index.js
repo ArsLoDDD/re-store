@@ -1,5 +1,6 @@
 import React from "react";
 import "./BeautyListItem.css";
+// import { Link } from "react-router-dom";
 const BeautyListItem = ({ beauty }) => {
   const { title, description, price, image, id } = beauty;
   return (
@@ -8,11 +9,12 @@ const BeautyListItem = ({ beauty }) => {
         <img src={image} alt="k" />
       </div>
       <div className="beauty-details">
-        <a href="1" className="beauty-title">
-          {title}{id}
-        </a>
+        <span className="beauty-title">
+          {title}
+          {id}
+        </span>
         <div className="beauty-desciption">{description}</div>
-        <div className="beauty-price">Цена:  {price}</div>
+        <div className="beauty-price">Цена: {price}</div>
         <button className="btn btn-info add-to-cart">Добавить в корзину</button>
       </div>
     </div>

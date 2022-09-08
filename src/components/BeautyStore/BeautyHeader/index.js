@@ -1,17 +1,18 @@
 import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./BeautyHeader.css";
+import { Link } from "react-router-dom";
 
 const BeautyHeader = ({ numItems, total }) => {
   return (
     <header className="header">
-      <a href="1" className="logo text-dark">
+      <Link to="/" className="logo text-dark">
         Kera Violet
-      </a>
-      <a href="1">
+      </Link>
+      <Link to="/cart">
         <ShoppingCartIcon fontSize="large" sx={{ color: "red" }} />
         {numItems} items (${total})
-      </a>
+      </Link>
     </header>
   );
 };
