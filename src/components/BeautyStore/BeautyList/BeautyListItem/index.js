@@ -1,7 +1,7 @@
 import React from "react";
 import "./BeautyListItem.css";
 // import { Link } from "react-router-dom";
-const BeautyListItem = ({ beauty }) => {
+const BeautyListItem = ({ beauty, onAddedToCart }) => {
   const { title, description, price, image, id } = beauty;
   return (
     <div className="beauty-list-item">
@@ -15,7 +15,9 @@ const BeautyListItem = ({ beauty }) => {
         </span>
         <div className="beauty-desciption">{description}</div>
         <div className="beauty-price">Цена: {price}</div>
-        <button className="btn btn-info add-to-cart">Добавить в корзину</button>
+        <button onClick={onAddedToCart} className="btn btn-info add-to-cart">
+          Добавить в корзину
+        </button>
       </div>
     </div>
   );

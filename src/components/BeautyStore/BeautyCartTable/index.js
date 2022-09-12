@@ -2,9 +2,47 @@ import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-
+import { beautyDeleteFromCart } from "../../../actions";
 import "./BeautyCartTable.css";
-const BeautyCartTable = () => {
+import { connect } from "react-redux";
+const BeautyCartTable = ({
+  items,
+  total,
+  onIncrease,
+  onDecrease,
+  onDelete,
+}) => {
+  let countTotal = 0;
+
+  const renderRow = (item, idx) => {
+    const { title, count, total, id } = item;
+    countTotal += total;
+    return (
+      <tr key={id}>
+        <td>{idx + 1}</td>
+        <td>{title}</td>
+        <td>{count}</td>
+        <td>{total}$</td>
+        <td>
+          <AddCircleIcon
+            onClick={() => onIncrease(id)}
+            sx={{ color: "green" }}
+            fontSize="large"
+          />
+          <RemoveCircleIcon
+            onClick={() => onDecrease(id)}
+            sx={{ color: "red" }}
+            fontSize="large"
+          />
+          <DeleteForeverIcon
+            onClick={() => onDelete(id)}
+            sx={{ color: "orange" }}
+            fontSize="large"
+          />
+        </td>
+      </tr>
+    );
+  };
   return (
     <div className="beauty-cart-table">
       <h2>Order</h2>
@@ -18,25 +56,28 @@ const BeautyCartTable = () => {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1 </td>
-            <td>Item</td>
-            <td>Count</td>
-            <td>Price</td>
-            <td>
-              <AddCircleIcon sx={{ color: "green" }} fontSize="large" />
-              <RemoveCircleIcon sx={{ color: "red" }} fontSize="large" />
-              <DeleteForeverIcon sx={{ color: "orange" }} fontSize="large" />
-            </td>
-          </tr>
-        </tbody>
+        <tbody>{items.map(renderRow)}</tbody>
       </table>
-      <div className="total">
-        <span>total</span>
-      </div>
+      <div className="total">Total: {countTotal}$</div>
     </div>
   );
 };
 
-export default BeautyCartTable;
+const mapStateToProps = ({ cartItem, orderTotal }) => {
+  return {
+    items: cartItem,
+    total: orderTotal,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrease: (id) => {
+      console.log(`increase ${id}`);
+    },
+    onDecrease: (id) => {
+      console.log(`decrease ${id}`);
+    },
+    onDelete: (id) => dispatch(beautyDeleteFromCart(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(BeautyCartTable);

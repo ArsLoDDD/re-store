@@ -1,19 +1,38 @@
 const beautyLoaded = (newBeauty) => {
   return {
-    type: "BEAUTY_LOADED",
+    type: "FETCH_BEAUTY_SUCCESS",
     payload: newBeauty,
   };
 };
 const beautyRequest = () => {
   return {
-    type: "BEAUTY_REQUESTED",
+    type: "FETCH_BEAUTY_REQUEST",
   };
 };
 
 const beautyError = (error) => {
   return {
-    type: "BEAUTY_ERROR",
+    type: "FETCH_BEAUTY_FAILURE",
     payload: error,
   };
 };
-export { beautyLoaded, beautyRequest, beautyError };
+export const beautyAddedToCart = (beautyId) => {
+  return {
+    type: "BEAUTY_ADDED_TO_CART",
+    payload: beautyId,
+  };
+};
+export const beautyDeleteFromCart = (beautyId) => {
+  return {
+    type: "BEAUTY_DELETE_FROM_CART",
+    payload: beautyId,
+  };
+};
+const fetchBeauty = (dispatch, beautySalonService) => () => {
+  dispatch(beautyRequest());
+  beautySalonService
+    .getBeauty()
+    .then((data) => dispatch(beautyLoaded(data)))
+    .catch((err) => dispatch(beautyError(err)));
+};
+export { fetchBeauty };
