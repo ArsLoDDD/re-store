@@ -2,7 +2,11 @@ import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { beautyDeleteFromCart } from "../../../actions";
+import {
+  beautyDeleteFromCart,
+  beautyAddCountItemsToCart,
+  beautyRemCountItemsToCart,
+} from "../../../actions";
 import "./BeautyCartTable.css";
 import { connect } from "react-redux";
 const BeautyCartTable = ({
@@ -71,12 +75,8 @@ const mapStateToProps = ({ cartItem, orderTotal }) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrease: (id) => {
-      console.log(`increase ${id}`);
-    },
-    onDecrease: (id) => {
-      console.log(`decrease ${id}`);
-    },
+    onIncrease: (id) => dispatch(beautyAddCountItemsToCart(id)),
+    onDecrease: (id) => dispatch(beautyRemCountItemsToCart(id)),
     onDelete: (id) => dispatch(beautyDeleteFromCart(id)),
   };
 };

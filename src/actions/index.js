@@ -28,6 +28,18 @@ export const beautyDeleteFromCart = (beautyId) => {
     payload: beautyId,
   };
 };
+export const beautyAddCountItemsToCart = (beautyId) => {
+  return {
+    type: "BEAUTY_ADD_COUNT_TO_CART",
+    payload: beautyId,
+  };
+};
+export const beautyRemCountItemsToCart = (beautyId) => {
+  return {
+    type: "BEAUTY_REM_COUNT_FROM_CART",
+    payload: beautyId,
+  };
+};
 const fetchBeauty = (dispatch, beautySalonService) => () => {
   dispatch(beautyRequest());
   beautySalonService
